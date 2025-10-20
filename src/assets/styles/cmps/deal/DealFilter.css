@@ -1,13 +1,5 @@
 .deal-filter {
-  position: sticky;
-  top: 0px;
-  text-align: center;
-  padding: 20px;
-  background-color: var(--bg1) ;
 
-  .logo {
-    color: var(--clr2);
-  }
   form {
     display: flex;
     gap: 10px;

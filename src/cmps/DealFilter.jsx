@@ -26,7 +26,6 @@ export function DealFilter() {
   }
   return (
     <section className="deal-filter">
-      <h1 className="logo">Deals Explorer</h1>
       <form>
         <input
           name="txt"
