@@ -2,15 +2,18 @@
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: subgrid;
-&& > *:not(.deal-filter){
-  grid-column: 2;
+  && > *:not(.deal-filter) {
+    grid-column: 2;
+  }
+  .deal-filter {
+    grid-column: 1/-1;
+  }
+  .deals-seperator {
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid var(--gray6);
+  }
+  .no-deals {
+    text-align: center;
+  }
 }
-.deal-filter{
-  grid-column: 1/-1;
-}
-.deals-seperator{
-  margin-top:25px;
-  border:none;
-  border-bottom:1px solid var(--gray6);
-}
-} 

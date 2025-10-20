@@ -8,7 +8,6 @@ import { Loader } from "../cmps/Loader.jsx"
 import { DealFilter } from "../cmps/DealFilter.jsx"
 
 export function DealIndex() {
-
   //***********Optional for real backend************************
   //load the deals using http service and disptach to store.
   // const deals = useSelector((storeState) => storeState.dealModule.deals)
@@ -27,7 +26,11 @@ export function DealIndex() {
       <>
         <DealFilter />
         {isLoading && !data && <Loader />}
-        {data?.deals && <DealList deals={data.deals} />}
+        {data?.deals?.length ? (
+          <DealList deals={data.deals} />
+        ) : (
+          <h3 className="no-deals">No Deals to show</h3>
+        )}
         <Outlet />
       </>
     </section>

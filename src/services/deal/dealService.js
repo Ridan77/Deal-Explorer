@@ -6,6 +6,9 @@ const BASE_URL =
         ? '/api/deals'
         : 'http://localhost:3000/deals'
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
 export function useDeals(dealId = null) {
     const filterBy = useSelector((storeState) => storeState.dealModule.filterBy)
     const { txt, category, sortBy, isDescending, page, limit } = filterBy
@@ -29,6 +32,8 @@ export function useDeals(dealId = null) {
     return useQuery({
         queryKey: dealId ? ['deal', dealId] : ['deals', filterBy],
         queryFn: async () => {
+            // Artificial delay to simulate network latency, and to expose loader
+            await delay(500)
             const res = await fetch(url)
             if (!res.ok) throw new Error('Failed to fetch deal(s)')
             const data = await res.json()

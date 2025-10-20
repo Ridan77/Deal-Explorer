@@ -4,7 +4,7 @@
   --clr3: #574f7d;
   --clr4: #95adbe;
   --clr5: #dff0ea;
-  --details-clr: rgb(23, 195, 66);
+  --details-clr: rgb(23, 241, 78);
 
   --clr1-light: color-mix(in lab, var(--clr1), white 15%);
 
@@ -13,7 +13,7 @@
   --gray3: #777;
   --gray4: #333;
   --bg1: #c1e1ed;
-  --details-bg: rgb(123, 123, 156);
+  --details-bg: rgb(78, 78, 98);
 
 
   --ins-gray: #f0f2f5;
