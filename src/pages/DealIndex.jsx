@@ -17,7 +17,6 @@ export function DealIndex() {
   //   loadDeals(filterBy)
   // },[filterBy])
   //**************************************************************
-
   const filterBy = useSelector((storeState) => storeState.dealModule.filterBy)
   const { data, isLoading, error } = useDeals()
   const { page = 1, limit = 10 } = filterBy
@@ -42,7 +41,7 @@ export function DealIndex() {
               Page <strong>{page}</strong> of <strong>{totalPages || 1}</strong>
             </span>
             <button
-              disabled={page===totalPages}
+              disabled={page === totalPages}
               onClick={() => changePage(1)}>
               Next
             </button>

@@ -41,5 +41,6 @@ export function useDeals(dealId = null) {
             return dealId ? { deal: data } : { deals: data, totalCount: +totalCount || data.length }
         },
         keepPreviousData: true,
+        staleTime: 1000 * 60 * 5, //  cache for 5 min
     })
 }
