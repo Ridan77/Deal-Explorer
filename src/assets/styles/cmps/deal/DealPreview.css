@@ -1,0 +1,24 @@
+.deal-preview {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap:20px;
+  height: 100%;
+  place-items: center;
+  background-color: var(--blue2);
+  border-radius: 0.6em;
+  padding: 20px;
+  color: white;
+  
+ 
+ .stats{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-around;
+  font-size: 0.6em;
+  text-align: center;
+ }
+  }
+
+

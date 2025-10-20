@@ -1,0 +1,107 @@
+
+import { storageService } from '../async-storage.service'
+import { makeId, makeLorem } from '../util.service'
+
+const STORAGE_KEY = 'deal'
+
+export const dealService = {
+    query,
+    getById,
+    save,
+    remove,
+    addLikeDeal,
+}
+window.ss = dealService
+
+_createDeals()
+
+async function query(filterBy = { txt: '' }) {
+    let deals = await storageService.query(STORAGE_KEY)
+    const { txt, category, sortBy, isDescending } = filterBy
+    if (txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        deals = deals.filter(deal => regex.test(deal.title))
+    }
+       return deals
+}
+
+function getById(dealId) {
+    return storageService.get(STORAGE_KEY, dealId)
+}
+
+async function remove(dealId) {
+    await storageService.remove(STORAGE_KEY, dealId)
+}
+
+async function save(deal) {
+    let savedDeal
+    if (deal._id) {
+
+        savedDeal = await storageService.put(STORAGE_KEY, deal)
+    } else {
+        const dealToSave = { ...deal, likedBy: [], comments: [], createdAt: Date.now() }
+        savedDeal = await storageService.post(STORAGE_KEY, dealToSave)
+        console.log('deal from ssave service', savedDeal)
+    }
+    return savedDeal
+}
+
+
+async function addLikeDeal(user, dealId) {
+    const miniUser = {
+        _id: user._id,
+        fullname: user.fullname,
+        imgUrl: user.imgUrl
+    }
+    const deal = await getById(dealId)
+    if (deal.likedBy) {
+        const alreadyLiked = deal.likedBy.some(item => item._id === user._id)
+
+        if (alreadyLiked) {
+            deal.likedBy = deal.likedBy.filter(item => item._id !== user._id)
+        } else {
+            deal.likedBy.push(miniUser)
+        }
+    } else {
+        deal.likedBy = [miniUser]
+    }
+    await storageService.put(STORAGE_KEY, deal)
+    return deal.likedBy
+
+}
+
+
+async function _createDeals() {
+    let deals = await storageService.query(STORAGE_KEY)
+    if (!deals || !deals.length) {
+        deals = _mockData()
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(deals))
+    }
+}
+
+function _mockData() {
+    return [
+  { "id": 1, "title": "Noise-Canceling Headphones", "category": "Electronics", "price": 399, "rating": 4.5, "description": "Over-ear, 30h battery." },
+  { "id": 2, "title": "Espresso Machine", "category": "Home", "price": 249, "rating": 4.2, "description": "15-bar pump, milk frother." },
+  { "id": 3, "title": "Trail Running Shoes", "category": "Sports", "price": 129, "rating": 4.7, "description": "Lightweight, grippy outsole." },
+  { "id": 4, "title": "Mechanical Keyboard", "category": "Electronics", "price": 109, "rating": 4.3, "description": "Hot-swappable switches." },
+  { "id": 5, "title": "Chef Knife 8\"", "category": "Home", "price": 89, "rating": 4.8, "description": "High-carbon steel." },
+  { "id": 6, "title": "Smartwatch Series 8", "category": "Electronics", "price": 499, "rating": 4.6, "description": "Heart-rate, GPS, waterproof." },
+  { "id": 7, "title": "Blender Pro 900W", "category": "Home", "price": 139, "rating": 4.4, "description": "Multiple speeds, easy clean." },
+  { "id": 8, "title": "Yoga Mat Eco", "category": "Sports", "price": 59, "rating": 4.5, "description": "Non-slip, 6mm thick." },
+  { "id": 9, "title": "Wireless Mouse MX", "category": "Electronics", "price": 79, "rating": 4.7, "description": "Ergonomic, rechargeable." },
+  { "id": 10, "title": "Air Purifier Compact", "category": "Home", "price": 179, "rating": 4.3, "description": "HEPA filter, silent mode." },
+  { "id": 11, "title": "Adjustable Dumbbells", "category": "Sports", "price": 299, "rating": 4.6, "description": "Up to 50lbs per hand." },
+  { "id": 12, "title": "Smart TV 55\"", "category": "Electronics", "price": 699, "rating": 4.4, "description": "4K UHD, HDR10, Wi-Fi." },
+  { "id": 13, "title": "Air Fryer XL", "category": "Home", "price": 159, "rating": 4.5, "description": "6L capacity, digital display." },
+  { "id": 14, "title": "Electric Toothbrush", "category": "Home", "price": 99, "rating": 4.2, "description": "Pressure sensor, 2-week battery." },
+  { "id": 15, "title": "Hiking Backpack 45L", "category": "Sports", "price": 179, "rating": 4.8, "description": "Water-resistant, ventilated back." },
+  { "id": 16, "title": "Bluetooth Speaker Mini", "category": "Electronics", "price": 59, "rating": 4.5, "description": "Portable, 12h battery." },
+  { "id": 17, "title": "Robot Vacuum", "category": "Home", "price": 399, "rating": 4.6, "description": "Smart mapping, auto recharge." },
+  { "id": 18, "title": "Resistance Bands Set", "category": "Sports", "price": 39, "rating": 4.3, "description": "5 levels, door anchor included." },
+  { "id": 19, "title": "Gaming Monitor 27\"", "category": "Electronics", "price": 329, "rating": 4.7, "description": "144Hz, 1ms response." },
+  { "id": 20, "title": "Electric Kettle", "category": "Home", "price": 69, "rating": 4.4, "description": "1.7L, auto shut-off." }
+]
+}
+
+

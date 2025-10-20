@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+background-color: var(--bg1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.6em;
+}
+
+p {
+  margin-block-end: 0em;
+  margin-block-start: 0em;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+a:hover {
+  /* text-decoration: underline; */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: unset;
+}
+
+input {
+  max-width: 100%;
+  font-size: 16px; 
+}
+
+textarea{
+  font-size: 16px;
+}
+
+img,
+embed,
+video,
+object {
+  max-width: 100%;
+  display: block;
+}

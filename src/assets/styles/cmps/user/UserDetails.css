@@ -1,0 +1,67 @@
+.user-details {
+  margin-top: 10px;
+  grid-column: 3;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  grid-template-rows: auto auto 1fr;
+  .user-header {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    align-items: center;
+    .sub-header {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-evenly;
+
+      .user-counters {
+        display: grid;
+        grid-template-columns: 20px 50px 20px 80px 20px 80px;
+      }
+      .name-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+          width: 100px;
+          background-color: var(--blue);
+          color: white;
+          border-radius: 8px;
+          margin: 0;
+          padding: 0.3em 0.8em;
+        }
+
+        span {
+          font-size: 1.2em;
+        }
+      }
+    }
+
+    img {
+      width: 200px;
+      grid-row: 1/-1;
+      place-self: center;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+  }
+  .grid-saved-container {
+    grid-column: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0 5px 0;
+
+    .active {
+      border-bottom: 1px solid var(--gray4);
+    }
+  }
+  .no-saved-stories {
+    text-align: center;
+    grid-column: 2;
+  }
+}

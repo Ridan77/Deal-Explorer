@@ -1,0 +1,132 @@
+/* Flex helpers */
+.flex {
+  display: flex;
+
+  > .full {
+    flex: 1;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+}
+
+.bold {
+  font-weight: 600;
+}
+.under-construction {
+  margin-left: 300px;
+}
+
+.full-grid{
+  grid-column: 1/-1;
+}
+.gray {
+  color: var(--gray-for-date);
+}
+
+.hide{
+  display: none;
+}
+.full {
+  width: 100%;
+}
+
+.time{
+  font-size: 0.8em;
+}
+
+.scrollable {
+  overflow-y: auto;
+}
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.file-input {
+  display: none;
+}
+
+
+
+/* Simple and useful CSS Debugging Technique */
+.debug * {
+  outline: 1px solid gold;
+}
+
+.flex-align {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+.clickable:hover{
+  text-decoration: underline;
+}
+
+.user-img{
+
+  border-radius: 6em;
+}
+
+/* Helper for checkbox to Slider
+/* Container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 13px;
+}
+
+/* Hide default checkbox */
+.switch input {
+  display: none;
+  /* opacity: 0; */
+  /* width: 0; */
+  /* height: 0; */
+}
+
+/* Slider background */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* background-color: #ccc; */
+  background-color: var(--gray2);
+  transition: .4s;
+  border-radius: 26px;
+}
+
+/* Knob */
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 10px; width: 10px;
+  left: 3px; bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+/* Checked state */
+input:checked + .slider {
+  background-color: var(--blue2);
+}
+
+input:checked + .slider::before {
+  transform: translateX(12px);
+}
+
+

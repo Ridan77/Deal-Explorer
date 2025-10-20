@@ -1,0 +1,30 @@
+:root {
+  --clr1: #ce2e6c;
+  --clr2: #4f3a65;
+  --clr3: #574f7d;
+  --clr4: #95adbe;
+  --clr5: #dff0ea;
+
+  --clr1-light: color-mix(in lab, var(--clr1), white 15%);
+
+  --gray1: #ddd;
+  --gray2: #aaa;
+  --gray3: #777;
+  --gray4: #333;
+  --bg1: #c1e1ed;
+
+
+  --ins-gray: #f0f2f5;
+  --txt-on-gray: #0c1014;
+  --gray-for-date: #737373;
+  --gray-icons: #8e8e8e;
+  --gray5: #f5f5f5;
+  --blue: #0866ff;
+  --blue2: #437ba1;
+  --me: #3797f0;
+  --other: #efefef;
+  --gray6: #dadde1;
+  --shadow: #0003;
+  --success: rgb(41, 189, 73);
+  --error: rgb(216, 59, 59);
+}
