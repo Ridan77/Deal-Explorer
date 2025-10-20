@@ -4,39 +4,18 @@
   height: 80vh;
   place-items: center;
   text-align: center;
+  background-color: var(--details-bg);
+  color:var(--details-clr);
+  border-radius: 12px;
 
-  
-  img{
-    height:300px;
+  img {
+    height: 300px;
   }
-  
-  dialog {
-    border-radius: 8px;
-    border: none;
-    padding: 0;
 
-    .dialog-grid {
-      max-width: 560px;
-    }
-    button {
-      font-size: 1em;
-      margin: 0;
-      width: 100%;
-      padding: 50px;
-      height: 50px;
-    }
-    .dialog-grid {
-      display: grid;
-      width: 50vw;
+  .info-bar{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
 
-      button {
-        border-bottom: 1px var(--gray6) solid;
-        padding: 0;
-      }
-    }
-
-    &::backdrop {
-      background-color: rgba(0, 0, 0, 0.6);
-    }
   }
 }

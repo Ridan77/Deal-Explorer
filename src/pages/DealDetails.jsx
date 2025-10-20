@@ -1,57 +1,42 @@
-import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
 import { Modal } from "../cmps/Modal"
-
-import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service"
-import { loadDeal } from "../store/actions/deal.actions.js"
-import { LOADING_DONE, LOADING_START } from "../store/reducers/system.reducer"
 import { svg } from "../cmps/Svgs"
 import { Loader } from "../cmps/Loader"
-
+import { useDeals } from "../services/deal/dealService.js"
+import { toggleSaveDeal } from "../store/actions/deal.actions"
+import { useSelector } from "react-redux"
 export function DealDetails() {
   const { dealId } = useParams()
-  const deal = useSelector((storeState) => storeState.dealModule.deal)
-  const isLoading = useSelector(
-    (storeState) => storeState.systemModule.isLoading
+  const savedDeals = useSelector(
+    (storeState) => storeState.dealModule.savedDeals
   )
-  const dialogRef = useRef()
-  const dispatch = useDispatch()
+  const { data, isLoading, error } = useDeals(dealId)
+
   const navigate = useNavigate()
-
-  useEffect(() => {
-    getDeal(dealId)
-  }, [])
-
-  async function getDeal(dealId) {
-    dispatch({ type: LOADING_START })
-    try {
-      await loadDeal(dealId)
-    } catch (err) {
-      console.log("Cannot load deal", err)
-    } finally {
-      dispatch({ type: LOADING_DONE })
-    }
-  }
 
   function onClose() {
     navigate("/deal")
   }
-  function onChange({ target }) {
-    setText(target.value)
-  }
-
-  if (!deal || isLoading) return <Loader />
+  const deal = data?.deal
+  if (isLoading) return <Loader />
   return (
     <section className="deal-details">
       <Modal onClose={onClose}>
         <div className="details-container">
           <h1>{deal.title}</h1>
+          <p>{deal.description}</p>
           <img
             src={`https://robohash.org/${deal.title}?set=set1`}
             alt={deal.title}
             className="deal-img"
           />
+          <div className="info-bar">
+            <p>{`${deal.price} $`}</p>
+            <p>{`Rating: ${deal.rating} `}</p>
+            <p onClick={() => toggleSaveDeal(deal.id)}>
+              {savedDeals.includes(deal.id) ? svg.saved1 : svg.saved}
+            </p>
+          </div>
         </div>
       </Modal>
     </section>

@@ -7,7 +7,7 @@ export const UNSAVE_DEAL = 'UNSAVE_DEAL'
 const initialState = {
     deals: null,
     deal: null,
-    filterBy: null,
+    filterBy: {},
     savedDeals: JSON.parse(localStorage.getItem('SAVED_DEALS')) || [],
 }
 

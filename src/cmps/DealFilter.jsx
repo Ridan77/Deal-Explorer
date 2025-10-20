@@ -1,28 +1,28 @@
 import { useEffect, useRef, useState } from "react"
 import { debounce } from "../services/util.service.js"
-import { dealService } from "../services/deal"
+import { useSelector } from "react-redux"
+import { setFilter } from "../store/actions/deal.actions.js"
 
-export function DealFilter({ filterBy, onSetFilter }) {
+export function DealFilter() {
+  const filterBy = useSelector((storeState) => storeState.dealModule.filterBy)
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-  const onSetFilterDebounce = useRef(debounce(onSetFilter)).current
+  const onSetFilterDebounce = useRef(
+    debounce((filter) => setFilter(filter), 700)
+  ).current
 
   useEffect(() => {
     onSetFilterDebounce(filterByToEdit)
   }, [filterByToEdit])
 
+ 
   function handleChange({ target }) {
     const { name, type, value, checked } = target
     let newValue
-
     if (type === "checkbox") newValue = checked
     else if (type === "number" || type === "range")
       newValue = value === "" ? "" : +value
     else newValue = value
-
-    setFilterByToEdit((prev) => ({
-      ...prev,
-      [name]: newValue,
-    }))
+    setFilterByToEdit((prev) => ({ ...prev, [name]: newValue }))
   }
   return (
     <section className="deal-filter">

@@ -1,6 +1,6 @@
 import { dealService } from '../../services/deal'
 import { store } from '../store'
-import { SET_DEALS, SET_DEAL, SAVE_DEAL, UNSAVE_DEAL } from '../reducers/deal.reducer'
+import { SET_DEALS, SET_DEAL, SAVE_DEAL, UNSAVE_DEAL,SET_FILTER } from '../reducers/deal.reducer'
 import { showErrorMsg } from '../../services/event-bus.service'
 
 export async function loadDeals(filterBy = { txt: '' }) {
@@ -24,6 +24,9 @@ export async function loadDeal(dealId) {
     }
 }
 
+export function setFilter(filterBy) {
+    store.dispatch(getCmdSetFilter(filterBy))
+}
 export function toggleSaveDeal(dealId) {
     const { savedDeals } = store.getState().dealModule
     const isSaved = savedDeals.includes(dealId)
@@ -60,9 +63,15 @@ function getCmdUnSaveDeal(dealId) {
         dealId
     }
 }
+function getCmdSetFilter(filterBy) {
+    return {
+        type: SET_FILTER,
+        filterBy
+    }
+}
 
 
 // unitTestActions()
 async function unitTestActions() {
     await loadDeals()
- }
+}
