@@ -5,7 +5,7 @@ It demonstrates practical use of **React**, **Redux**, and **TanStack Query**, f
 
 ---
 
-## 🧠 Implementation Explanation
+##  Implementation Explanation
 
 ###  Tech Stack
 - **Frontend:** React (Hooks, functional components)
@@ -22,6 +22,8 @@ It demonstrates practical use of **React**, **Redux**, and **TanStack Query**, f
 - **`useDeals.js`**  
   Custom hook wrapping TanStack’s `useQuery`.  
   Builds dynamic query parameters from the Redux filter state and manages caching via `staleTime`.
+  A small artificial **delay** is added inside the hook to simulate backend latency — this helps demonstrate loading states and improve UX realism during development.
+
 
 - **`deal.actions.js`**  
   Responsible for loading deals, updating the filter, and handling saved deals.  
@@ -76,8 +78,8 @@ With more development time, I would:
 # Install dependencies
 npm install
 
+# Run server
+npm run server
+
 # Run development server
 npm run dev
-
-# Build for production
-npm run build
