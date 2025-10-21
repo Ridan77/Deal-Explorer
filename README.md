@@ -1,7 +1,7 @@
 # 🛒 Deal Explorer
 
-**Deal Explorer** is a responsive web app for browsing, filtering, and saving product deals across multiple categories.  
-It demonstrates practical use of **React**, **Redux**, and **TanStack Query**, with a clean architecture and modular code organization.
+**Deal Explorer** is a fluid React web app for exploring, filtering, and saving product deals across multiple categories.  
+It demonstrates practical use of **React**, **Redux**, and **TanStack Query**, focusing on modular design and efficient state synchronization.
 
 ---
 
@@ -9,81 +9,66 @@ It demonstrates practical use of **React**, **Redux**, and **TanStack Query**, w
 
 ### 🧩 Tech Stack
 - **Frontend:** React (Hooks, functional components)
-- **State Management:** Redux + custom hooks (`useSelector`, `useDispatch`)
-- **Data Fetching:** TanStack React Query with caching & stale-time optimization
-- **Styling:** CSS Modules / Tailwind (if applicable)
-- **Tooling:** Vite for fast dev build and hot reload
+- **State Management:** Redux (`useSelector`, `useDispatch`)
+- **Data Fetching:** TanStack React Query (`useQuery`) with controlled stale-time caching
+- **Tooling:** Vite for fast development and hot module replacement
+- **Persistence:** LocalStorage for saved deals
 
 ### ⚙️ Architecture Overview
-- `DealFilter.jsx`:  
-  Controlled component managing search, category, and sorting filters. Uses debounced dispatches to Redux to prevent excessive API calls.
+- **`DealFilter.jsx`**  
+  Controlled component that manages search text, category, and sort options.  
+  Uses a debounced Redux dispatch (`setFilter`) to prevent excessive re-renders.
 
-- `useDeals.js`:  
-  Custom hook wrapping `useQuery` from TanStack Query. Handles caching, pagination, and query parameters built from the Redux filter state.
+- **`useDeals.js`**  
+  Custom hook wrapping TanStack’s `useQuery`.  
+  Builds dynamic query parameters from the Redux filter state and manages caching via `staleTime`.
 
-- `deal.actions.js`:  
-  Dispatches actions for loading, saving, and toggling deals. Integrates with `dealService` for RESTful communication with the backend.
+- **`deal.actions.js`**  
+  Responsible for loading deals, updating the filter, and handling saved deals.  
+  
 
-- `dealService.js`:  
-  Abstracts API requests using the `fetch` API. Includes dynamic query string building and pagination support.
+- **`dealService.js`**  
+  Abstracts data retrieval logic; currently local or mock-based.  
+  Provides helpers for querying, sorting, and pagination if needed later.
 
-- `DealList.jsx` and `DealPreview.jsx`:  
-  Presentation components rendering the deal cards and handling user interactions (save, sort, etc.).
-
-### 🧰 Key Features
-- 🔍 Real-time **search and filter** with debounce
-- 📦 **Pagination** and lazy data loading
-- 🕒 **Smart caching** via TanStack Query (`staleTime`, `cacheTime`)
-- 💾 **Saved deals** toggle (persisted locally or via backend)
-- 📱 Fully **responsive** design
+- **`DealList.jsx` / `DealPreview.jsx`**  
+  Presentation components for rendering the deal cards and handling interactions such as saving.
 
 ---
 
-## 📚 Documentation & References
-
-These are the main resources and docs used during development:
-
-- [React Docs – Official Guide](https://react.dev/learn)
-- [Redux Toolkit Docs](https://redux-toolkit.js.org/)
-- [TanStack Query Docs](https://tanstack.com/query/latest/docs/react)
-- [MDN Web Docs – URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
-- [Vite Official Docs](https://vitejs.dev/guide/)
-- [Render Deployment Guide](https://render.com/docs/deploy-node-express-app)
-- [PostCSS Docs (for optional nesting)](https://postcss.org/)
-
----
 
 ## ⏳ If I Had More Time...
 
-With additional time, I would:
-- ✅ Add **unit and integration tests** (Jest + React Testing Library)
-- ✅ Add a **backend API** with Node/Express and MongoDB
-- ✅ Implement **user authentication** (login/signup, saved deals per user)
-- ✅ Integrate **infinite scrolling** instead of pagination
-- ✅ Polish UI/UX with better transitions, skeleton loaders, and empty states
-- ✅ Deploy CI/CD pipeline (GitHub Actions + Render or Vercel)
-- ✅ Add PWA capabilities (offline browsing and caching)
+With more development time, I would:
+- ✅ Add **unit and integration tests** (Jest + React Testing Library)  
+- ✅ Connect to a **real backend API** (Node/Express + MongoDB)  
+- ✅ Replace static pagination with **infinite scrolling**  
+- ✅ Add more polished **UI/UX**, transitions, and functionality.   
 
 ---
 
 ## ⚖️ Trade-offs & Assumptions
 
-- **Debounce vs Immediate Filtering:**  
-  Used a 700ms debounce to balance responsiveness and API efficiency.
+- **Performance vs Responsiveness:**  
+  Implemented a 700 ms debounce for filter updates to prevent unnecessary state dispatches and re-renders.  
+  The trade-off is a slight delay in search responsiveness for smoother overall performance.
 
-- **Caching vs Fresh Data:**  
-  Set `staleTime` to keep results locally for better UX, trading off some data freshness.
+- **Caching Simplicity:**  
+  Used only `staleTime` from TanStack Query for lightweight client-side caching.  
+  This minimizes redundant requests but doesn’t include background refresh or cache invalidation logic.
 
-- **Local Redux Filters:**  
-  Redux handles filters globally; ideally these could sync with query params for shareable URLs.
+- **Data Source Assumption:**  
+  The current implementation assumes that all deals are retrieved from a static or mock data source,  
+  without remote updates or server synchronization.
 
-- **Limited Backend Scope:**  
-  Current version assumes a static or mock API; in production it should connect to a real service with authentication and rate limiting.
+- **Global Filter State:**  
+  Filters are managed centrally via Redux for simplicity.  
+  In a larger application, these could be synced with URL parameters for shareable or bookmarkable views.
 
-- **UI Simplicity:**  
-  Focused on clean MVP rather than visual polish or animation complexity.
+- **Feature Scope:**  
+  Chose to omit lazy loading and infinite scroll for clarity and stability;  
+  all data is fetched per filter change instead.
 
----
 
 ## 🚀 Quick Start
 
@@ -91,7 +76,7 @@ With additional time, I would:
 # Install dependencies
 npm install
 
-# Run dev server
+# Run development server
 npm run dev
 
 # Build for production
