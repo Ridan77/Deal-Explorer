@@ -1,5 +1,6 @@
 import { eventBus, showSuccessMsg } from "../services/event-bus.service"
 import { useState, useEffect, useRef } from "react"
+import { svg } from "./Svgs"
 
 export function UserMsg() {
   const [msg, setMsg] = useState(null)
@@ -29,8 +30,8 @@ export function UserMsg() {
   }
   return (
     <section className={`user-msg ${msg?.type} ${msgClass()}`}>
-      <button onClick={closeMsg}>x</button>
-      {msg?.txt}
+      <button onClick={closeMsg}>{svg.close}</button>
+      <span>{msg?.txt}</span>
     </section>
   )
 }
