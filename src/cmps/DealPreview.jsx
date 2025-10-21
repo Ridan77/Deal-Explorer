@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { svg } from "./Svgs"
 import { useSelector } from "react-redux"
 import { toggleSaveDeal } from "../store/actions/deal.actions"
+import { showSuccessMsg } from "../services/event-bus.service"
 
 export function DealPreview({ deal }) {
   const savedDeals = useSelector(
@@ -10,8 +11,10 @@ export function DealPreview({ deal }) {
 
   function onSave(ev) {
     ev.preventDefault()
-    toggleSaveDeal(deal.id)
+    const msg = toggleSaveDeal(deal.id)
+    showSuccessMsg(`Deal was ${msg}`)
   }
+
   return (
     <Link to={`/deal/${deal.id}`} className="deal-preview">
       <p className="title">{deal.title}</p>
@@ -21,7 +24,9 @@ export function DealPreview({ deal }) {
         <p className="category">{`Category: ${deal.category} `}</p>
         <p className="category">{`Rating: ${deal.rating} `}</p>
       </div>
-      <p onClick={onSave}>{savedDeals.includes(deal.id) ? svg.saved1: svg.saved}</p>
+      <p onClick={onSave}>
+        {savedDeals.includes(deal.id) ? svg.saved1 : svg.saved}
+      </p>
     </Link>
   )
 }

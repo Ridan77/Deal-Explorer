@@ -1,12 +1,12 @@
 .header {
-
   position: sticky;
   top: 0px;
   text-align: center;
   padding: 20px;
   background-color: var(--bg1);
+
   .logo {
-      color: var(--clr2);
+    color: var(--clr2);
   }
   .pagination {
     color: var(--blue2);
@@ -15,8 +15,9 @@
     justify-content: space-evenly;
     margin-bottom: 20px;
     border-radius: 10px;
-   
-    button,span {
+
+    button,
+    span {
       color: var(--blue2);
       padding: 10px 20px;
     }

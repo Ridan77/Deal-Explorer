@@ -1,5 +1,3 @@
-export const SET_DEALS = 'SET_DEALS'
-export const SET_DEAL = 'SET_DEAL'
 export const SET_FILTER = 'SET_FILTER'
 export const SAVE_DEAL = 'SAVE_DEAL'
 export const UNSAVE_DEAL = 'UNSAVE_DEAL'
@@ -14,12 +12,6 @@ const initialState = {
 export function dealReducer(state = initialState, action) {
     let newState = state
     switch (action.type) {
-        case SET_DEALS:
-            newState = { ...state, deals: action.deals }
-            break
-        case SET_DEAL:
-            newState = { ...state, deal: action.deal }
-            break
         case SET_FILTER:
             newState = { ...state, filterBy: action.filterBy }
             break

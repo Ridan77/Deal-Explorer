@@ -5,17 +5,16 @@
   place-items: center;
   text-align: center;
   background-color: var(--details-bg);
-  color:var(--details-clr);
+  color: var(--details-clr);
   border-radius: 12px;
 
   img {
     height: 300px;
   }
 
-  .info-bar{
+  .info-bar {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
-
   }
 }

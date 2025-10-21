@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import { svg } from "./Svgs";
+import { Fragment } from "react"
+import { svg } from "./Svgs"
 
 export function Modal({ children, onClose }) {
   return (
@@ -12,5 +12,5 @@ export function Modal({ children, onClose }) {
         </button>
       </section>
     </Fragment>
-  );
+  )
 }

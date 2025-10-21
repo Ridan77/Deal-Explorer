@@ -1,25 +1,27 @@
-@import "setup/var";
-@import "setup/typography";
-
-@import "basics/helpers";
-@import "basics/layout";
-@import "basics/base";
-@import "basics/forms";
 
 
+/* SETUP */
+@import "setup/var.css";
+@import "setup/typography.css";
+@import "setup/mq.css";
 
-/* @import "cmps/SideNav.css"; */
-@import "cmps/UserMsg";
+/* BASE */
+@import "basics/helpers.css";
+@import "basics/layout.css";
+@import "basics/base.css";
+
+/* GENERAL APP */
+@import "cmps/UserMsg.css";
 @import "cmps/modal.css";
 @import "cmps/Loader.css";
 
-@import "cmps/deal/DealIndex";
-@import "cmps/deal/DealList";
-@import "cmps/deal/DealPreview";
+/* DEALS */
+@import "cmps/deal/DealIndex.css";
+@import "cmps/deal/DealList.css";
+@import "cmps/deal/DealPreview.css";
 @import "cmps/deal/DealDetails.css";
 @import "cmps/deal/DealFilter.css";
 @import "cmps/deal/Header.css";
 
 
 
-/* @import "./setup/mq.css"; */

@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react"
 import { debounce } from "../services/util.service.js"
 import { useSelector } from "react-redux"
 import { setFilter } from "../store/actions/deal.actions.js"
+import { getDefaultFilter } from "../services/deal/dealService.js"
 
 export function DealFilter() {
   const filterBy = useSelector((storeState) => storeState.dealModule.filterBy)
-  const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+  const [filterByToEdit, setFilterByToEdit] = useState(getDefaultFilter())
   const onSetFilterDebounce = useRef(
     debounce((filter) => setFilter(filter), 700)
   ).current
@@ -24,6 +25,7 @@ export function DealFilter() {
     else newValue = value
     setFilterByToEdit((prev) => ({ ...prev, [name]: newValue }))
   }
+  
   return (
     <section className="deal-filter">
       <form>
