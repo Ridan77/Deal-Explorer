@@ -7,14 +7,14 @@ It demonstrates practical use of **React**, **Redux**, and **TanStack Query**, f
 
 ## 🧠 Implementation Explanation
 
-### 🧩 Tech Stack
+###  Tech Stack
 - **Frontend:** React (Hooks, functional components)
 - **State Management:** Redux (`useSelector`, `useDispatch`)
 - **Data Fetching:** TanStack React Query (`useQuery`) with controlled stale-time caching
 - **Tooling:** Vite for fast development and hot module replacement
 - **Persistence:** LocalStorage for saved deals
 
-### ⚙️ Architecture Overview
+###  Architecture Overview
 - **`DealFilter.jsx`**  
   Controlled component that manages search text, category, and sort options.  
   Uses a debounced Redux dispatch (`setFilter`) to prevent excessive re-renders.
@@ -40,14 +40,14 @@ It demonstrates practical use of **React**, **Redux**, and **TanStack Query**, f
 ## ⏳ If I Had More Time...
 
 With more development time, I would:
-- ✅ Add **unit and integration tests** (Jest + React Testing Library)  
-- ✅ Connect to a **real backend API** (Node/Express + MongoDB)  
-- ✅ Replace static pagination with **infinite scrolling**  
-- ✅ Add more polished **UI/UX**, transitions, and functionality.   
+-  Add **unit and integration tests** (Jest + React Testing Library)  
+-  Connect to a **real backend API** (Node/Express + MongoDB)  
+-  Replace static pagination with **infinite scrolling**  
+-  Add more polished **UI/UX**, transitions, and functionality.   
 
 ---
 
-## ⚖️ Trade-offs & Assumptions
+##  Trade-offs & Assumptions
 
 - **Performance vs Responsiveness:**  
   Implemented a 700 ms debounce for filter updates to prevent unnecessary state dispatches and re-renders.  
@@ -70,7 +70,7 @@ With more development time, I would:
   all data is fetched per filter change instead.
 
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # Install dependencies
