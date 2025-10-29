@@ -36,28 +36,28 @@ export function dealReducer(state = initialState, action) {
 
 // unitTestReducer()
 
-function unitTestReducer() {
-    let state = initialState
-    const deal1 = { _id: 'b101', vendor: 'Deal ' + parseInt('' + Math.random() * 10), speed: 12, owner: null, msgs: [] }
-    const deal2 = { _id: 'b102', vendor: 'Deal ' + parseInt('' + Math.random() * 10), speed: 13, owner: null, msgs: [] }
+// function unitTestReducer() {
+//     let state = initialState
+//     const deal1 = { _id: 'b101', vendor: 'Deal ' + parseInt('' + Math.random() * 10), speed: 12, owner: null, msgs: [] }
+//     const deal2 = { _id: 'b102', vendor: 'Deal ' + parseInt('' + Math.random() * 10), speed: 13, owner: null, msgs: [] }
 
-    state = dealReducer(state, { type: SET_DEALS, deals: [deal1] })
-    console.log('After SET_DEALS:', state)
+//     state = dealReducer(state, { type: SET_DEALS, deals: [deal1] })
+//     console.log('After SET_DEALS:', state)
 
-    state = dealReducer(state, { type: ADD_DEAL, deal: deal2 })
-    console.log('After ADD_DEAL:', state)
+//     state = dealReducer(state, { type: ADD_DEAL, deal: deal2 })
+//     console.log('After ADD_DEAL:', state)
 
-    state = dealReducer(state, { type: UPDATE_DEAL, deal: { ...deal2, vendor: 'Good' } })
-    console.log('After UPDATE_DEAL:', state)
+//     state = dealReducer(state, { type: UPDATE_DEAL, deal: { ...deal2, vendor: 'Good' } })
+//     console.log('After UPDATE_DEAL:', state)
 
-    state = dealReducer(state, { type: REMOVE_DEAL, dealId: deal2._id })
-    console.log('After REMOVE_DEAL:', state)
+//     state = dealReducer(state, { type: REMOVE_DEAL, dealId: deal2._id })
+//     console.log('After REMOVE_DEAL:', state)
 
-    state = dealReducer(state, { type: SET_DEAL, deal: deal1 })
-    console.log('After SET_DEAL:', state)
+//     state = dealReducer(state, { type: SET_DEAL, deal: deal1 })
+//     console.log('After SET_DEAL:', state)
 
-    const msg = { id: 'm' + parseInt('' + Math.random() * 100), txt: 'Some msg', by: { _id: 'u123', fullname: 'test' } }
-    state = dealReducer(state, { type: ADD_DEAL_MSG, dealId: deal1._id, msg })
-    console.log('After ADD_DEAL_MSG:', state)
-}
+//     const msg = { id: 'm' + parseInt('' + Math.random() * 100), txt: 'Some msg', by: { _id: 'u123', fullname: 'test' } }
+//     state = dealReducer(state, { type: ADD_DEAL_MSG, dealId: deal1._id, msg })
+//     console.log('After ADD_DEAL_MSG:', state)
+// }
 

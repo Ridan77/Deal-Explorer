@@ -40,7 +40,7 @@ function getCmdSetFilter(filterBy) {
 }
 
 
-// unitTestActions()
-async function unitTestActions() {
-    await loadDeals()
-}
+// // unitTestActions()
+// async function unitTestActions() {
+//     await loadDeals()
+// }
