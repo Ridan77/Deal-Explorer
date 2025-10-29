@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { DealFilter } from "./DealFilter"
 import { useDeals } from "../services/deal/dealService"
+import { setFilter } from "../store/actions/deal.actions"
 
 export function Header() {
   const filterBy = useSelector((storeState) => storeState.dealModule.filterBy)
