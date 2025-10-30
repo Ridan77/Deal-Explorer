@@ -1,3 +1,5 @@
+import { getDefaultFilter } from "../../services/deal/deal.service"
+
 export const SET_FILTER = 'SET_FILTER'
 export const SAVE_DEAL = 'SAVE_DEAL'
 export const UNSAVE_DEAL = 'UNSAVE_DEAL'
@@ -5,7 +7,7 @@ export const UNSAVE_DEAL = 'UNSAVE_DEAL'
 const initialState = {
     deals: null,
     deal: null,
-    filterBy: {},
+    filterBy: getDefaultFilter(),
     savedDeals: JSON.parse(localStorage.getItem('SAVED_DEALS')) || [],
 }
 

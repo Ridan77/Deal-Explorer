@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState } from "react"
 import { debounce } from "../services/util.service.js"
-import { useSelector } from "react-redux"
-import { setFilter } from "../store/actions/deal.actions.js"
-import { getDefaultFilter } from "../services/deal/dealService.js"
+import { useDealActions } from "../customHooks/useDealsActions.js"
+import { getDefaultFilter } from "../services/deal/deal.service.js"
 
-export function DealFilter() {
-  const filterBy = useSelector((storeState) => storeState.dealModule.filterBy)
+import { SelectBox } from "./SelectBox.jsx"
+import TextField from "@mui/material/TextField"
+import { IconButton, InputAdornment } from "@mui/material"
+import ClearIcon from "@mui/icons-material/Clear"
+import FormControlLabel from "@mui/material/FormControlLabel"
+import Switch from "@mui/material/Switch"
+
+export function DealFilter({ categories }) {
   const [filterByToEdit, setFilterByToEdit] = useState(getDefaultFilter())
+  const sortCategories = ["", "Price", "Rating"]
+  const { setFilter } = useDealActions()
   const onSetFilterDebounce = useRef(
     debounce((filter) => setFilter(filter), 700)
   ).current
@@ -15,7 +22,6 @@ export function DealFilter() {
     onSetFilterDebounce(filterByToEdit)
   }, [filterByToEdit])
 
- 
   function handleChange({ target }) {
     const { name, type, value, checked } = target
     let newValue
@@ -25,44 +31,64 @@ export function DealFilter() {
     else newValue = value
     setFilterByToEdit((prev) => ({ ...prev, [name]: newValue }))
   }
-  
+
   return (
     <section className="deal-filter">
       <form>
-        <input
+        <TextField
+          sx={{ m: 1, minWidth: 120 }}
+          variant="outlined"
+          label="Search"
+          autoComplete="off"
+          value={filterByToEdit.txt}
           name="txt"
           onChange={handleChange}
-          value={filterByToEdit.txt}
-          placeholder="Search by title..."
-          autoComplete="off"
+          slotProps={{
+            input: {
+              endAdornment: filterByToEdit.txt && (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="clear text"
+                    onClick={() =>
+                      setFilterByToEdit((prev) => ({ ...prev, txt: "" }))
+                    }
+                    edge="end">
+                    <ClearIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
         />
-        <select
-          name="category"
-          value={filterByToEdit.category}
-          onChange={handleChange}>
-          <option value="">Category </option>
-          <option value="Home">Home </option>
-          <option value="Electronics">Electronics </option>
-          <option value="Sports">Sports </option>
-        </select>
+        {categories.length > 0 && (
+          <SelectBox
+            name={"Category"}
+            handleChange={handleChange}
+            currentValue={filterByToEdit.category}
+            options={categories}
+          />
+        )}
         <div className="sort-control">
-          <select
-            name="sortBy"
-            value={filterByToEdit.sortBy}
-            onChange={handleChange}>
-            <option value="">Sort By </option>
-            <option value="price">Price </option>
-            <option value="rating">Rating </option>
-          </select>
-          <label title="Sort Descending" className="switch">
-            <input
-              checked={!!filterByToEdit.isDescending}
-              name="isDescending"
-              onChange={handleChange}
-              type="checkbox"
-            />
-            <span className="slider"></span>
-          </label>
+          <SelectBox
+            name={"Sort"}
+            handleChange={handleChange}
+            currentValue={filterByToEdit.sort}
+            options={sortCategories}
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={filterByToEdit.isDescending}
+                onChange={(ev) =>
+                  setFilterByToEdit((prev) => ({
+                    ...prev,
+                    isDescending: ev.target.checked,
+                  }))
+                }
+              />
+            }
+            label="Descending"
+          />
         </div>
       </form>
     </section>

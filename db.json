@@ -2,7 +2,7 @@
   "deals": [
     { "id": 1, "title": "Noise-Canceling Headphones", "category": "Electronics", "price": 399, "rating": 4.5, "description": "Over-ear, 30h battery." },
     { "id": 2, "title": "Espresso Machine", "category": "Home", "price": 249, "rating": 4.2, "description": "15-bar pump, milk frother." },
-    { "id": 3, "title": "Trail Running Shoes", "category": "Sports", "price": 129, "rating": 4.7, "description": "Lightweight, grippy outsole." },
+    { "id": 3, "title": "Trail Running Shoes", "category": "Outdoor", "price": 129, "rating": 4.7, "description": "Lightweight, grippy outsole." },
     { "id": 4, "title": "Mechanical Keyboard", "category": "Electronics", "price": 109, "rating": 4.3, "description": "Hot-swappable switches." },
     { "id": 5, "title": "Chef Knife 8\"", "category": "Home", "price": 89, "rating": 4.8, "description": "High-carbon steel." },
     { "id": 6, "title": "Smartwatch Series 8", "category": "Electronics", "price": 499, "rating": 4.6, "description": "Heart-rate, GPS, waterproof." },

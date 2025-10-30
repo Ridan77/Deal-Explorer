@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom"
 import { svg } from "./Svgs"
 import { useSelector } from "react-redux"
-import { toggleSaveDeal } from "../store/actions/deal.actions"
+import { useDealActions } from "../customHooks/useDealsActions"
 import { showSuccessMsg } from "../services/event-bus.service"
 
 export function DealPreview({ deal }) {
   const savedDeals = useSelector(
     (storeState) => storeState.dealModule.savedDeals
   )
+const { toggleSaveDeal } = useDealActions()
 
   function onSave(ev) {
     ev.preventDefault()

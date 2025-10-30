@@ -2,8 +2,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Modal } from "../cmps/Modal"
 import { svg } from "../cmps/Svgs"
 import { Loader } from "../cmps/Loader"
-import { useDeals } from "../services/deal/dealService.js"
-import { toggleSaveDeal } from "../store/actions/deal.actions"
+import { useGetDeal } from "../customHooks/useGetDeal.js"
+import { useDealActions } from "../customHooks/useDealsActions.js"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
@@ -12,7 +12,9 @@ export function DealDetails() {
   const savedDeals = useSelector(
     (storeState) => storeState.dealModule.savedDeals
   )
-  const { data, isLoading, error } = useDeals(dealId)
+  const { data, isLoading, error } = useGetDeal(dealId)
+  const { toggleSaveDeal } = useDealActions()
+
   const navigate = useNavigate()
   const deal = data?.deal
 
