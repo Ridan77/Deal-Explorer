@@ -1,8 +1,7 @@
 import { Routes, Route, Navigate } from "react-router"
 import { DealIndex } from "./pages/DealIndex.jsx"
 import { DealDetails } from "./pages/DealDetails.jsx"
-import { UserMsg } from "./cmps/UserMsg.jsx"
-
+import { UserMsg } from "./components/UserMsg.jsx"
 
 export function RootCmp() {
   return (
