@@ -1,34 +1,44 @@
 import { useEffect, useRef, useState } from "react"
-import { debounce } from "../services/util.service.js"
-import { useDealActions } from "../customHooks/useDealsActions.js"
-import { getDefaultFilter } from "../services/deal/deal.service.js"
+import { debounce } from "../services/util.service"
+import { useDealActions } from "../customHooks/useDealsActions"
+import { getDefaultFilter } from "../services/deal/deal.service"
 
-import { SelectBox } from "./SelectBox.jsx"
+import { SelectBox } from "./SelectBox"
 import TextField from "@mui/material/TextField"
 import { IconButton, InputAdornment } from "@mui/material"
 import ClearIcon from "@mui/icons-material/Clear"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
+import type { FilterBy } from "../types/filterBy"
 
-export function DealFilter({ categories }) {
-  const [filterByToEdit, setFilterByToEdit] = useState(getDefaultFilter())
+interface DealFilterProps {
+  categories: string[]
+}
+export function DealFilter({ categories }: DealFilterProps): JSX.Element {
+  const [filterByToEdit, setFilterByToEdit] = useState<FilterBy>(
+    getDefaultFilter()
+  )
   const sortCategories = ["", "Price", "Rating"]
   const { setFilter } = useDealActions()
   const onSetFilterDebounce = useRef(
-    debounce((filter) => setFilter(filter), 700)
+    debounce((filter: FilterBy) => setFilter(filter), 700)
   ).current
 
   useEffect(() => {
     onSetFilterDebounce(filterByToEdit)
   }, [filterByToEdit])
 
-  function handleChange({ target }) {
-    const { name, type, value, checked } = target
-    let newValue
-    if (type === "checkbox") newValue = checked
-    else if (type === "number" || type === "range")
-      newValue = value === "" ? "" : +value
-    else newValue = value
+  function handleChange(ev:React.ChangeEvent<any>) {
+    const { name, type, value } = ev.target
+    const newValue =
+      type === "checkbox"
+        ? ev.target.checked
+        : type === "number" || type === "range"
+        ? value === ""
+          ? ""
+          : +value
+        : value
+
     setFilterByToEdit((prev) => ({ ...prev, [name]: newValue }))
   }
 

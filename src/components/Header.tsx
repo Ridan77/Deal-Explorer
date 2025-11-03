@@ -2,18 +2,23 @@ import { useSelector } from "react-redux"
 import { DealFilter } from "./DealFilter"
 import { useGetDeals } from "../customHooks/useGetDeals"
 import { useDealActions } from "../customHooks/useDealsActions"
+import { FilterBy } from "../types/filterBy"
 
-export function Header() {
-  const filterBy = useSelector((storeState) => storeState.dealModule.filterBy)
+export function Header(): JSX.Element {
+  const filterBy = useSelector(
+    (storeState: any) => storeState.dealModule.filterBy as FilterBy
+  )
   const { setFilter } = useDealActions()
 
   const { data } = useGetDeals()
   const { page = 1, limit = 10 } = filterBy
   const totalCount = data?.totalCount || 0
   const totalPages = Math.ceil(totalCount / limit)
-  const categories = [...new Set(data?.deals.map((deal) => deal.category))]
+  const categories = data?.deals
+    ? [...new Set(data?.deals.map((deal) => deal.category))]
+    : []
 
-  function changePage(diff) {
+  function changePage(diff: number): void {
     setFilter({ ...filterBy, page: page + diff })
   }
   return (

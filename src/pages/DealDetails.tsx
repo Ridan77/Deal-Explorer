@@ -2,32 +2,36 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Modal } from "../components/Modal"
 import { svg } from "../components/Svgs"
 import { Loader } from "../components/Loader"
-import { useGetDeal } from "../customHooks/useGetDeal.js"
-import { useDealActions } from "../customHooks/useDealsActions.js"
+import { useGetDeal } from "../customHooks/useGetDeal"
+import { useDealActions } from "../customHooks/useDealsActions"
 import { useSelector } from "react-redux"
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
-export function DealDetails() {
-  const { dealId } = useParams()
+
+export function DealDetails(): JSX.Element {
+  const { dealId } = useParams<{dealId?:string}>()
+  const navigate = useNavigate()
+
   const savedDeals = useSelector(
-    (storeState) => storeState.dealModule.savedDeals
+    (storeState: any) => storeState.dealModule.savedDeals as string[]
   )
   const { data, isLoading, error } = useGetDeal(dealId)
   const { toggleSaveDeal } = useDealActions()
 
-  const navigate = useNavigate()
   const deal = data?.deal
 
-  function onClose() {
+  function onClose(): void {
     navigate("/deal")
   }
-  function onToggleSaveDeal(dealId) {
+  function onToggleSaveDeal(dealId: string): void {
     const msg = toggleSaveDeal(dealId)
     showSuccessMsg(`Deal was ${msg}`)
   }
 
   if (isLoading) return <Loader />
   if (error) showErrorMsg("Cannot load deal")
+  if (!deal) return <Loader />
+
   return (
     <Modal onClose={onClose}>
       <div className="details-container">

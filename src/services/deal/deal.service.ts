@@ -1,4 +1,6 @@
- export function getDefaultFilter() {
+import type { FilterBy } from "../../types/filterBy";
+
+ export function getDefaultFilter() : FilterBy {
     return {
         txt: '',
         category:'',

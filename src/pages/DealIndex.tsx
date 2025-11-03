@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
-import { useGetDeals } from "../customHooks/useGetDeals.js"
-import { DealList } from "../components/DealList.jsx"
-import { Loader } from "../components/Loader.jsx"
+import { useGetDeals } from "../customHooks/useGetDeals"
+import { DealList } from "../components/DealList"
+import { Loader } from "../components/Loader"
+import { Header } from "../components/Header"
+import { showErrorMsg } from "../services/event-bus.service"
 
-import { Header } from "../components/Header.jsx"
-import { showErrorMsg } from "../services/event-bus.service.js"
 
 export function DealIndex() {
   const { data, isLoading, error } = useGetDeals()
