@@ -1,3 +1,17 @@
+> ##  Improved Version Notice
+> This is the **improved and refactored version** following a detailed **code review**.  
+>  
+> **Key improvements include:**
+> -  Migration of the entire codebase to **TypeScript** for better type safety and maintainability  
+> -  Refined **directory structure** for clearer separation and encapsulation of components  
+> -  Removal of **anti-pattern store usage** and redundant code  
+> -  Enhanced **linting and code consistency**  
+> -  Refactored components for **better reusability** and single-responsibility logic  
+> -  Integration of **external UI libraries (MUI)** for a cleaner and more professional interface  
+
+
+
+
 # 🛒 Deal Explorer
 
 **Deal Explorer** is a fluid React web app for exploring, filtering, and saving product deals across multiple categories.  
