@@ -5,11 +5,12 @@ import {
   SET_FILTER,
 } from "../store/reducers/deal.reducer"
 import type { FilterBy } from "../types/filterBy"
+import type { RootState } from "../store/store"
 
 export function useDealActions() {
   const dispatch = useDispatch()
   const savedDeals = useSelector(
-    (storeState: any) => storeState.dealModule.savedDeals as string[]
+    (storeState: RootState) => storeState.dealModule.savedDeals 
   )
 
   function toggleSaveDeal(dealId: string): string {

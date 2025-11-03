@@ -6,6 +6,7 @@ import { useGetDeal } from "../customHooks/useGetDeal"
 import { useDealActions } from "../customHooks/useDealsActions"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import type { RootState } from "../store/store"
 
 
 export function DealDetails(): JSX.Element {
@@ -13,7 +14,7 @@ export function DealDetails(): JSX.Element {
   const navigate = useNavigate()
 
   const savedDeals = useSelector(
-    (storeState: any) => storeState.dealModule.savedDeals as string[]
+    (storeState: RootState) => storeState.dealModule.savedDeals
   )
   const { data, isLoading, error } = useGetDeal(dealId)
   const { toggleSaveDeal } = useDealActions()

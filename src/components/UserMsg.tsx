@@ -1,17 +1,20 @@
-import { eventBus, showSuccessMsg } from "../services/event-bus.service"
+import { eventBus } from "../services/event-bus.service"
 import { useState, useEffect, useRef } from "react"
 import { svg } from "./Svgs"
-
-export function UserMsg() {
-  const [msg, setMsg] = useState(null)
-  const timeoutIdRef = useRef()
+interface UserMsgData {
+  txt: string
+  type: string
+}
+export function UserMsg(): JSX.Element | null {
+  const [msg, setMsg] = useState<UserMsgData | null>(null)
+  const timeoutIdRef = useRef<number | null>(null)
 
   useEffect(() => {
-    const unsubscribe = eventBus.on("show-msg", (msg) => {
+    const unsubscribe = eventBus.on("show-msg", (msg: UserMsgData) => {
       setMsg(msg)
       if (timeoutIdRef.current) {
-        timeoutIdRef.current = null
         clearTimeout(timeoutIdRef.current)
+        timeoutIdRef.current = null
       }
       timeoutIdRef.current = setTimeout(closeMsg, 3000)
     })

@@ -1,4 +1,6 @@
-export const svg = {
+import type { ReactElement } from "react"
+
+export const svg : Record<string, ReactElement> = {
   close: (
     <svg
       className="close-svg"

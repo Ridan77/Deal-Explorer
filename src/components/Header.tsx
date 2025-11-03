@@ -3,10 +3,12 @@ import { DealFilter } from "./DealFilter"
 import { useGetDeals } from "../customHooks/useGetDeals"
 import { useDealActions } from "../customHooks/useDealsActions"
 import { FilterBy } from "../types/filterBy"
+import type { RootState } from "../store/store"
+
 
 export function Header(): JSX.Element {
   const filterBy = useSelector(
-    (storeState: any) => storeState.dealModule.filterBy as FilterBy
+    (storeState: RootState) => storeState.dealModule.filterBy
   )
   const { setFilter } = useDealActions()
 

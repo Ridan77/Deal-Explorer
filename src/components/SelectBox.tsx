@@ -2,9 +2,14 @@ import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
+import type { SelectChangeEvent } from "@mui/material/Select"
 
 interface SelectBoxProps {
-  handleChange: () => void
+  handleChange: (
+    event:
+      | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+      | SelectChangeEvent<string>
+  ) => void
   options: string[]
   currentValue: string
   name: string
@@ -15,26 +20,27 @@ export function SelectBox({
   currentValue,
   name,
 }: SelectBoxProps): JSX.Element {
+  const labelId = `${name}-label`
+  const selectId = `${name}-select`
+
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel id="name">{name}</InputLabel>
+      <InputLabel id={labelId}>{name}</InputLabel>
       <Select
-        labelId="name"
-        id="name"
+        labelId={labelId}
+        id={selectId}
         name={name.toLowerCase()}
         value={currentValue}
-        label="Category"
+        label={name}
         onChange={handleChange}>
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {options.map((option) => {
-          return (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          )
-        })}
+        {options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   )

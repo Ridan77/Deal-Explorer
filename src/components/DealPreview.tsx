@@ -4,18 +4,17 @@ import { useSelector } from "react-redux"
 import { useDealActions } from "../customHooks/useDealsActions"
 import { showSuccessMsg } from "../services/event-bus.service"
 import type { MouseEvent } from "react"
-
 import type { Deal } from "../types/deal"
+import type { RootState } from "../store/store"
 
 interface DealPreviewProps {
   deal: Deal
 }
 
 export function DealPreview({ deal }: DealPreviewProps) {
-  // Type the state selector (temporary `any` for simplicity; we’ll fix store typing later)
 
   const savedDeals = useSelector(
-    (storeState: any) => storeState.dealModule.savedDeals as string[]
+    (storeState: RootState) => storeState.dealModule.savedDeals 
   )
 
   const { toggleSaveDeal, isSaved } = useDealActions()

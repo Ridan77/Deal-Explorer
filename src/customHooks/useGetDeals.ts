@@ -1,6 +1,8 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { useSelector } from "react-redux"
 import type { Deal } from "../types/deal"
+import type { RootState } from "../store/store"
+
 
 const BASE_URL =
   import.meta.env.MODE === "production"
@@ -18,7 +20,7 @@ interface DealsResponse {
 
 export function useGetDeals(): UseQueryResult<DealsResponse,Error> {
   const filterBy = useSelector(
-    (storeState: any) => storeState.dealModule.filterBy
+    (storeState: RootState) => storeState.dealModule.filterBy
   )
 
   const { txt, category, sort, isDescending, page = 1, limit = 10 } = filterBy

@@ -10,6 +10,7 @@ import ClearIcon from "@mui/icons-material/Clear"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
 import type { FilterBy } from "../types/filterBy"
+import type { SelectChangeEvent } from "@mui/material/Select"
 
 interface DealFilterProps {
   categories: string[]
@@ -28,11 +29,17 @@ export function DealFilter({ categories }: DealFilterProps): JSX.Element {
     onSetFilterDebounce(filterByToEdit)
   }, [filterByToEdit])
 
-  function handleChange(ev:React.ChangeEvent<any>) {
-    const { name, type, value } = ev.target
+  function handleChange(
+    ev:
+      | React.ChangeEvent<
+          HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
+      | SelectChangeEvent<string>
+  ): void {
+    const { name, type, value } = ev.target as HTMLInputElement
     const newValue =
       type === "checkbox"
-        ? ev.target.checked
+        ? "checked" in ev.target && ev.target.checked
         : type === "number" || type === "range"
         ? value === ""
           ? ""
