@@ -1,16 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { Modal } from "../components/Modal"
-import { svg } from "../components/Svgs"
-import { Loader } from "../components/Loader"
-import { useGetDeal } from "../customHooks/useGetDeal"
-import { useDealActions } from "../customHooks/useDealsActions"
+import { Modal } from "../../components/Modal/Modal"
+import { svg } from "../../components/Svgs"
+import { Loader } from "../../components/Loader/Loader"
+import { useGetDeal } from "../../customHooks/useGetDeal"
+import { useDealActions } from "../../customHooks/useDealsActions"
 import { useSelector } from "react-redux"
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
-import type { RootState } from "../store/store"
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+import type { RootState } from "../../store/store"
+import "./DealDetails.css"
 
 
 export function DealDetails(): JSX.Element {
-  const { dealId } = useParams<{dealId?:string}>()
+  const { dealId } = useParams<{ dealId?: string }>()
   const navigate = useNavigate()
 
   const savedDeals = useSelector(

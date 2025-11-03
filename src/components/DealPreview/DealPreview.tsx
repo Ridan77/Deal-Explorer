@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom"
-import { svg } from "./Svgs"
+import { svg } from "../Svgs"
 import { useSelector } from "react-redux"
-import { useDealActions } from "../customHooks/useDealsActions"
-import { showSuccessMsg } from "../services/event-bus.service"
+import { useDealActions } from "../../customHooks/useDealsActions"
+import { showSuccessMsg } from "../../services/event-bus.service"
 import type { MouseEvent } from "react"
-import type { Deal } from "../types/deal"
-import type { RootState } from "../store/store"
+import type { Deal } from "../../types/deal"
+import type { RootState } from "../../store/store"
+import "./DealPreview.css"
+
 
 interface DealPreviewProps {
   deal: Deal
 }
 
 export function DealPreview({ deal }: DealPreviewProps) {
-
   const savedDeals = useSelector(
-    (storeState: RootState) => storeState.dealModule.savedDeals 
+    (storeState: RootState) => storeState.dealModule.savedDeals
   )
 
   const { toggleSaveDeal, isSaved } = useDealActions()
@@ -36,9 +37,7 @@ export function DealPreview({ deal }: DealPreviewProps) {
         <p className="category">{`Rating: ${deal.rating}`}</p>
       </div>
 
-      <p onClick={onSave}>
-        {isDealSaved ? svg.saved1 : svg.saved}
-      </p>
+      <p onClick={onSave}>{isDealSaved ? svg.saved1 : svg.saved}</p>
     </Link>
   )
 }

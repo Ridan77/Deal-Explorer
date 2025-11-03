@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router"
-import { DealIndex } from "./pages/DealIndex"
-import { DealDetails } from "./pages/DealDetails"
-import { UserMsg } from "./components/UserMsg"
+import { DealIndex } from "./pages/DealIndex/DealIndex"
+import { DealDetails } from "./pages/DealDetails/DealDetails"
+import { UserMsg } from "./components/UserMsg/UserMsg"
 
 export function RootCmp(): JSX.Element {
   return (

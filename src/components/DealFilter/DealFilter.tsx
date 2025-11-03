@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from "react"
-import { debounce } from "../services/util.service"
-import { useDealActions } from "../customHooks/useDealsActions"
-import { getDefaultFilter } from "../services/deal/deal.service"
+import { debounce } from "../../services/util.service"
+import { useDealActions } from "../../customHooks/useDealsActions"
+import { getDefaultFilter } from "../../services/deal.service"
 
-import { SelectBox } from "./SelectBox"
+import { SelectBox } from "../SelectBox/SelectBox"
 import TextField from "@mui/material/TextField"
 import { IconButton, InputAdornment } from "@mui/material"
 import ClearIcon from "@mui/icons-material/Clear"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
-import type { FilterBy } from "../types/filterBy"
+import type { FilterBy } from "../../types/filterBy"
 import type { SelectChangeEvent } from "@mui/material/Select"
+import "./DealFilter.css"
 
 interface DealFilterProps {
   categories: string[]

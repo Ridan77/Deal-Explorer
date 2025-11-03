@@ -1,5 +1,7 @@
-import { DealPreview } from "./DealPreview"
-import type { Deal } from "../types/deal"
+import { DealPreview } from "../DealPreview/DealPreview"
+import type { Deal } from "../../types/deal"
+import "./DealList.css"
+
 interface DealListProps {
   deals: Deal[]
 }

@@ -1,13 +1,14 @@
 import { Fragment } from "react"
-import { svg } from "./Svgs"
+import { svg } from "../Svgs"
+import "./modal.css"
+
 
 interface ModalProps {
   children: React.ReactNode
   onClose: () => void
 }
 
-
-export function Modal({ children, onClose }:ModalProps) :JSX.Element {
+export function Modal({ children, onClose }: ModalProps): JSX.Element {
   return (
     <Fragment>
       <section onClick={onClose} className="modal-backdrop"></section>

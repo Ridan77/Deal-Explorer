@@ -1,6 +1,8 @@
-import { eventBus } from "../services/event-bus.service"
+import { eventBus } from "../../services/event-bus.service"
 import { useState, useEffect, useRef } from "react"
-import { svg } from "./Svgs"
+import "./UserMsg.css"
+
+import { svg } from "../Svgs"
 interface UserMsgData {
   txt: string
   type: string

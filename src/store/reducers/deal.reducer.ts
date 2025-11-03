@@ -1,4 +1,4 @@
-import { getDefaultFilter } from "../../services/deal/deal.service"
+import { getDefaultFilter } from "../../services/deal.service"
 import type { FilterBy } from "../../types/filterBy"
 import type { Deal } from "../../types/deal"
 
@@ -22,8 +22,9 @@ const initialState: DealState = {
   deals: null,
   deal: null,
   filterBy: getDefaultFilter(),
-  savedDeals: JSON.parse(localStorage.getItem("SAVED_DEALS") || "[]") as string[],
-
+  savedDeals: JSON.parse(
+    localStorage.getItem("SAVED_DEALS") || "[]"
+  ) as string[],
 }
 
 export function dealReducer(

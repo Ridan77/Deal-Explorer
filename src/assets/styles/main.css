@@ -10,18 +10,4 @@
 @import "basics/layout.css";
 @import "basics/base.css";
 
-/* GENERAL APP */
-@import "cmps/UserMsg.css";
-@import "cmps/modal.css";
-@import "cmps/Loader.css";
-
-/* DEALS */
-@import "cmps/deal/DealIndex.css";
-@import "cmps/deal/DealList.css";
-@import "cmps/deal/DealPreview.css";
-@import "cmps/deal/DealDetails.css";
-@import "cmps/deal/DealFilter.css";
-@import "cmps/deal/Header.css";
-
-
 

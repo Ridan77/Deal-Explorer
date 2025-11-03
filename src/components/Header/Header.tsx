@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
-import { DealFilter } from "./DealFilter"
-import { useGetDeals } from "../customHooks/useGetDeals"
-import { useDealActions } from "../customHooks/useDealsActions"
-import { FilterBy } from "../types/filterBy"
-import type { RootState } from "../store/store"
+import { DealFilter } from "../DealFilter/DealFilter"
+import { useGetDeals } from "../../customHooks/useGetDeals"
+import { useDealActions } from "../../customHooks/useDealsActions"
+import { FilterBy } from "../../types/filterBy"
+import type { RootState } from "../../store/store"
+import "./Header.css"
 
 
 export function Header(): JSX.Element {
