@@ -8,6 +8,8 @@
 > -  Enhanced **linting and code consistency**  
 > -  Refactored components for **better reusability** and single-responsibility logic  
 > -  Integration of **external UI libraries (MUI)** for a cleaner and more professional interface  
+> - Improved **custom hooks and service layers** for clearer separation between logic and presentation  
+
 
 
 
